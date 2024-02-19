@@ -1,0 +1,8 @@
+---
+- name: Stop Application if Running
+  hosts: all
+  tasks:
+    - name: Stop application
+      command: /path/to/stop/application
+      ignore_errors: true
+      register: stop_application_result
