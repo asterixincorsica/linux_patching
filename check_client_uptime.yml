@@ -1,0 +1,6 @@
+---
+- name: Check Client Uptime
+  hosts: all
+  tasks:
+    - name: Check the client uptime
+      shell: uptime
