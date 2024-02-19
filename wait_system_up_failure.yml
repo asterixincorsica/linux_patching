@@ -1,0 +1,8 @@
+---
+- name: Wait for System to Come Up Failure
+  hosts: all
+  tasks:
+    - name: Fail if system does not come up
+      fail:
+        msg: "System did not come up on {{ inventory_hostname }} within the expected time"
+      when: system_status.rc != 0
