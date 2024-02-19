@@ -1,0 +1,8 @@
+---
+- name: Apply Kernel Patch Failure
+  hosts: all
+  tasks:
+    - name: Fail if kernel patching fails
+      fail:
+        msg: "Failed to apply kernel patch on {{ inventory_hostname }}"
+      when: patch_update.failed
