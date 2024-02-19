@@ -1,0 +1,8 @@
+---
+- name: Check Application and Database Status Failure
+  hosts: all
+  tasks:
+    - name: Fail if application and database are running
+      fail:
+        msg: "Application or database is running on {{ inventory_hostname }}. Please stop it before proceeding."
+      when: application_process_check.stdout == "process is running"
