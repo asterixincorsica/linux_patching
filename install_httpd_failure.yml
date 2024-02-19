@@ -1,0 +1,7 @@
+---
+- name: Install httpd Failure
+  hosts: node2
+  tasks:
+    - name: Fail installation of httpd
+      fail:
+        msg: "Failed to install httpd package on {{ inventory_hostname }}"
