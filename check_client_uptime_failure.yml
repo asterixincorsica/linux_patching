@@ -1,0 +1,8 @@
+---
+- name: Check Client Uptime Failure
+  hosts: all
+  tasks:
+    - name: Fail if client uptime check fails
+      fail:
+        msg: "Failed to check client uptime on {{ inventory_hostname }}"
+      when: uptime_result.rc != 0
