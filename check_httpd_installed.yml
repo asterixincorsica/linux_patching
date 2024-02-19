@@ -1,0 +1,7 @@
+---
+- name: Check if httpd is installed
+  hosts: node2
+  tasks:
+    - name: Check if httpd is installed
+      command: rpm -q httpd
+      register: httpd_installed
