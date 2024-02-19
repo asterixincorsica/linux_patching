@@ -1,0 +1,8 @@
+---
+- name: Check if httpd is installed Failure
+  hosts: node2
+  tasks:
+    - name: Fail if httpd is not installed
+      fail:
+        msg: "httpd is not installed on {{ inventory_hostname }}"
+      when: httpd_installed.rc != 0
