@@ -1,0 +1,8 @@
+---
+- name: Check Kernel Update Failure
+  hosts: all
+  tasks:
+    - name: Fail if kernel update check fails
+      fail:
+        msg: "Failed to check kernel update status on {{ inventory_hostname }}"
+      when: kernel_updated.rc != 0
