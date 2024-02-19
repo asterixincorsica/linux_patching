@@ -1,0 +1,8 @@
+---
+- name: Stop Application Failure
+  hosts: all
+  tasks:
+    - name: Fail if application cannot be stopped
+      fail:
+        msg: "Failed to stop application on {{ inventory_hostname }}"
+      when: stop_application_result.rc != 0
