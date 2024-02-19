@@ -1,0 +1,15 @@
+---
+- name: Reboot System if Required
+  hosts: all
+  tasks:
+    - name: Check if reboot is required
+      shell: KERNEL_NEW=$(rpm -q --last kernel | head -1 | awk '{print $1}' | sed 's/kernel-//'); KERNEL_NOW=$(uname -r); if [[ $KERNEL_NEW != $KERNEL_NOW ]]; then echo "reboot needed"; else echo "reboot not needed"; fi
+      ignore_errors: true
+      register: reboot_status
+
+    - name: Restart the system if reboot is required
+      command: shutdown -r +1 "Rebooting System After Patching"
+      async: 0
+      poll: 0
+      when: reboot_status.stdout == "reboot needed"
+      ignore_errors: true
