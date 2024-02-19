@@ -1,0 +1,8 @@
+---
+- name: Check System Status Failure
+  hosts: all
+  tasks:
+    - name: Fail if system status check fails
+      fail:
+        msg: "Failed to check system status on {{ inventory_hostname }}"
+      when: system_status.rc != 0
