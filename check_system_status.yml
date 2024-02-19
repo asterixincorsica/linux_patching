@@ -1,0 +1,10 @@
+---
+- name: Check System Status
+  hosts: all
+  tasks:
+    - name: Check the system status
+      local_action: shell ansible -u ansible -m ping {{ inventory_hostname }}
+      register: system_status
+      until: system_status.rc == 0
+      retries: 30
+      delay: 10
