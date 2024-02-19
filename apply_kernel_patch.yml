@@ -1,0 +1,9 @@
+---
+- name: Apply Kernel Patch
+  hosts: all
+  tasks:
+    - name: Apply kernel patch
+      yum:
+        name: kernel
+        state: latest
+      register: patch_update
